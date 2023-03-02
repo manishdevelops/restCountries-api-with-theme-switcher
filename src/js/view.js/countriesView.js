@@ -6,7 +6,7 @@ class CountriesView {
   render(data) {
     this._data = data;
     const markup = this._generateMarkUp();
-    console.log(markup);
+    // console.log(markup);
     this._clear();
     this._parentElement.insertAdjacentHTML('afterbegin', markup);
   }
