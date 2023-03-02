@@ -1,14 +1,16 @@
+import View from './View.js';
 
-class CountriesView {
+class CountriesView extends View {
   _data;
   _parentElement = document.querySelector('.main__section1');
+  
 
   render(data) {
     this._data = data;
     const markup = this._generateMarkUp();
-    // console.log(markup);
     this._clear();
     this._parentElement.insertAdjacentHTML('afterbegin', markup);
+    this.createObserver();
   }
 
   _clear() {
@@ -28,7 +30,6 @@ class CountriesView {
   _generateMarkUp() {
     console.log(this._data);
     return this._data.map(this._generateMarkUpPreview).join('');
-    // this._data.map( c => console.log(c))
   }
 
   _generateMarkUpPreview(_data) {

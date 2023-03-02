@@ -26,6 +26,6 @@ const regionControl = function() {
 const init = async function() {
  controlCountries();
  themeView.addHandlerTheme(themeControl);
- filterRegionView.addHandlerRegion(regionControl);
+//  filterRegionView.addHandlerRegion(regionControl);
 }
 init();
