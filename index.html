@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link rel="stylesheet" href="/src/sass/main.scss">
+  <!-- <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png"> -->
+  <title>Frontend Mentor|rest countries api</title>
+  <script type="module" src="/src/js/controller.js"></script>
+</head>
+<body class="light-theme blurBg-tab">
+<main class="main">
+  <div class="main__header">
+    <div class="main__header__themeSection">
+      <h1 class="main__header__heading">Where in this world?</h1>
+      <button class="main__header--themeToggle">
+        <box-icon class="lightMoon" name='moon' animation='tada'></box-icon>
+        <!-- <box-icon class = "darkMoon" name='moon' type='solid' animation='tada' ></box-icon> -->
+        Dark Mode
+      </button>
+    </div>
+
+    <div class="main__header__searchSection">
+      <div class="main__header__inputContainer">
+        <box-icon class="searchIcon" name='search-alt' animation='flashing' ></box-icon>
+        <form onsubmit="return false;">
+          <label for="inputCountry"></label>
+          <input type="text" id="inputCountry" name="country" placeholder="Search for a country..." autocomplete="off"/ autofocus>
+        </form>
+      </div>
+      <div class="main__header__dropdownContainer">
+        <button class="dropdown-btn fiterByRegion">
+          Filter by Region
+          <box-icon class="arrowIcon" name='chevrons-down' animation='fade-down' class="arrow"></box-icon>
+        </button>
+        <ul class="dropdown-items">
+          <li class="region-list">All</li>
+          <li class="region-list">Africa</li>
+          <li class="region-list">Americas</li>
+          <li class="region-list">Asia</li>
+          <li class="region-list">Europe</li>
+          <li class="region-list">Oceania</li>
+        </ul>
+      </div>
+    </div>
+    <div class="body-blur"></div>
+  </div>
+
+  <section class="main__section1">
+    <!-- <div class="countryContainer">
+      <div class="countryFlagContainer">
+        <img class="countryFlag" src="/assets/design/Flag_of_India.svg.webp" alt="Country flag">
+      </div>
+        <div class="countryDetails">
+          <p class="countryName">India</p>
+          <p class="countryPopulation"><span>Population:</span>1234355</p>
+          <p class="countryRegion"><span>Region:</span>Asia</p>
+          <p class="countryCapital"><span>Capital:</span>Delhi</p>
+        </div>
+    </div> -->
+    <!-- <div class="main__countriesLoaderAnimation">
+      <div class="loader load"></div>
+    </div> -->
+  </section>
+  
+  <section class="main__Section2">
+    <!-- <div class="main__blurBg"></div>
+    <p class="main__loadingText">0%</p> -->
+    <button class="load-more-btn">Load more</button>
+  </section>
+
+</main>
+</body>
+</html>
