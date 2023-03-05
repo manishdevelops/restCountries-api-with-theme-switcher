@@ -1,31 +1,45 @@
 import * as model from './model.js';
-import countriesView from './view.js/countriesView.js';
-import themeView from './view.js/themeView.js';
-import filterRegionView from './view.js/themeView.js';
-import 'boxicons'
+import countriesView from './views/countriesView.js';
+import themeView from './views/themeView.js';
+import filterRegionView from './views/themeView.js';
+import moreCountriesView from './views/moreCountriesView.js';
+import 'boxicons';
 
-const controlCountries = async function() {
-  try {
-    countriesView._renderSpinner();
-    const firstPageData = await model.loadCountries();
-    countriesView.render(firstPageData);
-    console.log(firstPageData)
-  } catch(err) {
-    console.log(err);
-  }
-}
+const controlCountries = async function () {
+	try {
+		countriesView.renderSpinner();
+		await model.loadCountries();
+		const firstPageData = model.getResultsPage();
+		countriesView.render(firstPageData);
+		moreCountriesView.render(model.state);
+		countriesView.clearSpinner();
+		console.log(firstPageData);
+	} catch (err) {
+		console.log(err);
+	}
+};
 
-const themeControl = function() {
-  themeView.themeChange();
-}
+const controlTheme = () => {
+	themeView.themeChange();
+};
 
-const regionControl = function() {
-  filterRegionView.filterRegion();
-}
+const controlRegion = () => {
+	filterRegionView.filterRegion();
+};
 
-const init = async function() {
- controlCountries();
- themeView.addHandlerTheme(themeControl);
-//  filterRegionView.addHandlerRegion(regionControl);
-}
+const controlMoreCountries = (nextPage) => {
+	moreCountriesView.clear();
+	const renderMoreCountries = model.getResultsPage(nextPage);
+	countriesView.render(renderMoreCountries);
+	moreCountriesView.render(model.state);
+	// moreCountriesView.render();
+	// console.log(a);
+};
+
+const init = async () => {
+	await controlCountries();
+	themeView.addHandlerTheme(controlTheme);
+	//  filterRegionView.addHandlerRegion(regionControl);
+	moreCountriesView.addHandlerClick(controlMoreCountries);
+};
 init();
