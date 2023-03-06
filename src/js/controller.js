@@ -1,7 +1,7 @@
 import * as model from './model.js';
 import countriesView from './views/countriesView.js';
 import themeView from './views/themeView.js';
-import filterRegionView from './views/themeView.js';
+import filterRegionView from './views/filterRegionView.js';
 import moreCountriesView from './views/moreCountriesView.js';
 import 'boxicons';
 
@@ -16,6 +16,7 @@ const controlCountries = async function () {
 		console.log(firstPageData);
 	} catch (err) {
 		console.log(err);
+		countriesView.renderTimeoutError(err);
 	}
 };
 
@@ -39,7 +40,7 @@ const controlMoreCountries = (nextPage) => {
 const init = async () => {
 	await controlCountries();
 	themeView.addHandlerTheme(controlTheme);
-	//  filterRegionView.addHandlerRegion(regionControl);
+	filterRegionView.addHandlerRegion(controlRegion);
 	moreCountriesView.addHandlerClick(controlMoreCountries);
 };
 init();

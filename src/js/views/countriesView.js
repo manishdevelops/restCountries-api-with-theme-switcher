@@ -16,6 +16,22 @@ class CountriesView extends View {
 		this._parentElement.innerHTML = '';
 	}
 
+	clearSpinner() {
+		document.querySelector('.spinnerContainer').remove();
+	}
+
+	renderTimeoutError(err) {
+		console.log(err);
+		const markup = `
+				<div class="main__section2__error">
+					<box-icon class="error-icon" name='error' animation='flashing' ></box-icon>
+					<p class="errorMessage">${err}</p>
+				</div>
+		`;
+		this._clear();
+		this._parentElement.insertAdjacentHTML('beforeend', markup);
+	}
+
 	renderSpinner() {
 		const markup = `
       <div class="spinnerContainer">
@@ -24,10 +40,6 @@ class CountriesView extends View {
     `;
 		this._clear();
 		this._parentElement.insertAdjacentHTML('afterbegin', markup);
-	}
-
-	clearSpinner() {
-		document.querySelector('.spinnerContainer').remove();
 	}
 
 	_generateMarkUp() {
