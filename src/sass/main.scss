@@ -28,6 +28,10 @@ body {
 
     .main__header__heading {
       font-size: clamp(1rem, 0.8005475rem + 1.3309vw, 2rem);
+      .main__header__headingBtn {
+        all: unset;
+        cursor: pointer;
+      }
     }
 
     .main__header--themeToggle {

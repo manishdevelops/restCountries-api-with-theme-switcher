@@ -3,6 +3,7 @@ import countriesView from './views/countriesView.js';
 import themeView from './views/themeView.js';
 import filterRegionView from './views/filterRegionView.js';
 import moreCountriesView from './views/moreCountriesView.js';
+import reloadView from './views/reloadView.js';
 import 'boxicons';
 
 const controlCountries = async function () {
@@ -37,10 +38,15 @@ const controlMoreCountries = (nextPage) => {
 	// console.log(a);
 };
 
+const controlReload = function () {
+	reloadView.reloadPage();
+};
+
 const init = async () => {
 	await controlCountries();
 	themeView.addHandlerTheme(controlTheme);
 	filterRegionView.addHandlerRegion(controlRegion);
 	moreCountriesView.addHandlerClick(controlMoreCountries);
+	reloadView.addHandlerReload(controlReload);
 };
 init();
