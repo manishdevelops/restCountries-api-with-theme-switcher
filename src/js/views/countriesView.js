@@ -62,7 +62,6 @@ class CountriesView extends View {
         </div>
     </div>
     </a>
-
     `;
 	}
 }

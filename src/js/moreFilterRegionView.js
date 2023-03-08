@@ -1,6 +1,6 @@
-import View from './View.js';
+import View from './views/View';
 
-class MoreCountriesView extends View {
+class MoreFilterRegionView extends View {
 	_data;
 	parentElement = document.querySelector('.main__Section2');
 
@@ -14,7 +14,7 @@ class MoreCountriesView extends View {
 
 	addHandlerClick(handler) {
 		this.parentElement.addEventListener('click', (e) => {
-			const btn = e.target.closest('.load-more-btn');
+			const btn = e.target.closest('.region-load-more-btn');
 			console.log(btn);
 			if (!btn) return;
 			const nextPage = +btn.dataset.nextpage;
@@ -32,18 +32,20 @@ class MoreCountriesView extends View {
 	}
 
 	_generateMarkup() {
-		const curPage = this._data.page;
+		const curPage = this._data.selectedRegion.page;
 		const numPages = Math.ceil(
-			this._data.countries.length / this._data.resultsPerPage
+			this._data.regions[this._data.selectedRegion.region].length /
+				this._data.selectedRegion.resultsPerPage
 		);
+		console.log(this._data.regions[this._data.selectedRegion.region].length);
 		console.log('num of pages' + numPages);
 		console.log('current Page' + curPage);
-		console.log('total countries' + this._data.countries.length);
+		// console.log('total countries' + this._data.countries.length);
 		if (curPage < numPages) {
 			const markup = `
       		<button data-nextpage = "${
 						curPage + 1
-					}" class="load-more-btn">Load more</button>
+					}" class="region-load-more-btn">Load more</button>
       	`;
 			this.clear();
 			this.parentElement.insertAdjacentHTML('afterbegin', markup);
@@ -51,4 +53,4 @@ class MoreCountriesView extends View {
 	}
 }
 
-export default new MoreCountriesView();
+export default new MoreFilterRegionView();

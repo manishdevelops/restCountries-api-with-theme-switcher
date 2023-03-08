@@ -1,9 +1,11 @@
 import * as model from './model.js';
 import countriesView from './views/countriesView.js';
 import themeView from './views/themeView.js';
-import filterRegionView from './views/filterRegionView.js';
+import regionDropdownView from './views/regionDropdownView.js';
 import moreCountriesView from './views/moreCountriesView.js';
 import reloadView from './views/reloadView.js';
+import filterRegionView from './views/filterRegionView.js';
+import moreFilterRegionView from './moreFilterRegionView.js';
 import 'boxicons';
 
 const controlCountries = async function () {
@@ -21,14 +23,6 @@ const controlCountries = async function () {
 	}
 };
 
-const controlTheme = () => {
-	themeView.themeChange();
-};
-
-const controlRegion = () => {
-	filterRegionView.filterRegion();
-};
-
 const controlMoreCountries = (nextPage) => {
 	moreCountriesView.clear();
 	const renderMoreCountries = model.getResultsPage(nextPage);
@@ -38,6 +32,37 @@ const controlMoreCountries = (nextPage) => {
 	// console.log(a);
 };
 
+const controlTheme = () => {
+	themeView.themeChange();
+};
+
+const controlDropdown = () => {
+	regionDropdownView.toggleRegionDropdown();
+};
+
+const controlDropdownBlur = () => {
+	regionDropdownView.toggleBlurBg();
+};
+
+const controlFilterRegion = (regionName) => {
+	filterRegionView.clear();
+	model.setSelectedRegion(regionName);
+	const firstRegionPage = model.getRegionResultsPage();
+	console.log(firstRegionPage);
+	filterRegionView.render(firstRegionPage);
+	moreFilterRegionView.render(model.state);
+};
+
+const controlMoreFilterRegion = (nextPage) => {
+	// model.setSelectedRegion(nextPage);
+	// moreFilterRegionView.clear();
+	console.log(nextPage);
+	const moreFilteredData = model.getRegionResultsPage(nextPage);
+	console.log(moreFilteredData);
+	filterRegionView.render(moreFilteredData);
+	moreFilterRegionView.render(model.state);
+};
+
 const controlReload = function () {
 	reloadView.reloadPage();
 };
@@ -45,7 +70,10 @@ const controlReload = function () {
 const init = async () => {
 	await controlCountries();
 	themeView.addHandlerTheme(controlTheme);
-	filterRegionView.addHandlerRegion(controlRegion);
+	regionDropdownView.addHandlerDropdown(controlDropdown);
+	regionDropdownView.addHandlerDropdownBlur(controlDropdownBlur);
+	filterRegionView.addHandlerFilterRegion(controlFilterRegion);
+	moreFilterRegionView.addHandlerClick(controlMoreFilterRegion);
 	moreCountriesView.addHandlerClick(controlMoreCountries);
 	reloadView.addHandlerReload(controlReload);
 };
