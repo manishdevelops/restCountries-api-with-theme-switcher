@@ -156,7 +156,7 @@ body {
 }
 
 //section-1
-.main__section1 {
+.main__section1, .main__searchResults {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -171,7 +171,7 @@ body {
       justify-content: center;
       
       .errorMessage {
-        font-weight: 600;
+        font-weight: 500;
         color: #de4545;
         text-align: center;
       }
@@ -257,6 +257,17 @@ body {
         margin-right: 0.3rem;
       }
     }
+  }
+}
+
+.main__searchResults {
+  display: flex;
+  justify-content: center;
+  .main__searchMessage {
+    color: red;
+    font-weight: 500;
+    margin: auto;
+    font-size: 1.3rem;
   }
 }
 
@@ -395,7 +406,7 @@ body {
 }
 .error_display_text {
   color: red;
-  font-weight: 700;
+  font-weight: 500;
   margin: auto;
   margin-top: 20vh;
   font-size: 1.3rem;

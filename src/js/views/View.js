@@ -11,6 +11,10 @@ export default class View {
 		this.parentElement.insertAdjacentHTML('afterbegin', markup);
 	}
 
+	clearSearchResults() {
+		this._parentElement.innerHTML = '';
+	}
+
 	//observer
 	createObserver() {
 		this._countries = document.querySelectorAll('.countryContainer');

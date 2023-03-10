@@ -6,6 +6,7 @@ import moreCountriesView from './views/moreCountriesView.js';
 import reloadView from './views/reloadView.js';
 import filterRegionView from './views/filterRegionView.js';
 import moreFilterRegionView from './moreFilterRegionView.js';
+import searchCountryView from './views/searchCountryView.js';
 import 'boxicons';
 
 const controlCountries = async function () {
@@ -15,6 +16,7 @@ const controlCountries = async function () {
 		const firstPageData = model.getResultsPage();
 		countriesView.render(firstPageData);
 		moreCountriesView.render(model.state);
+		searchCountryView.render(model.state.countries);
 		countriesView.clearSpinner();
 		console.log(firstPageData);
 	} catch (err) {
@@ -25,6 +27,7 @@ const controlCountries = async function () {
 
 const controlMoreCountries = (nextPage) => {
 	moreCountriesView.clear();
+	searchCountryView.clearSearchResults();
 	const renderMoreCountries = model.getResultsPage(nextPage);
 	countriesView.render(renderMoreCountries);
 	moreCountriesView.render(model.state);
@@ -45,6 +48,7 @@ const controlDropdownBlur = () => {
 };
 
 const controlFilterRegion = (regionName) => {
+	searchCountryView.clearSearchResults();
 	filterRegionView.clear();
 	model.setSelectedRegion(regionName);
 	const firstRegionPage = model.getRegionResultsPage();
@@ -56,6 +60,7 @@ const controlFilterRegion = (regionName) => {
 const controlMoreFilterRegion = (nextPage) => {
 	// model.setSelectedRegion(nextPage);
 	// moreFilterRegionView.clear();
+	searchCountryView.clearSearchResults();
 	console.log(nextPage);
 	const moreFilteredData = model.getRegionResultsPage(nextPage);
 	console.log(moreFilteredData);
@@ -67,6 +72,11 @@ const controlReload = function () {
 	reloadView.reloadPage();
 };
 
+const controlSearchCountry = function (name) {
+	searchCountryView.hidePreviousData('none');
+	searchCountryView.searchCountry(name);
+};
+
 const init = async () => {
 	await controlCountries();
 	themeView.addHandlerTheme(controlTheme);
@@ -76,5 +86,6 @@ const init = async () => {
 	moreFilterRegionView.addHandlerClick(controlMoreFilterRegion);
 	moreCountriesView.addHandlerClick(controlMoreCountries);
 	reloadView.addHandlerReload(controlReload);
+	searchCountryView.addHandlerInput(controlSearchCountry);
 };
 init();

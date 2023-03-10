@@ -49,7 +49,7 @@ class CountriesView extends View {
 
 	_generateMarkUpPreview(_data) {
 		return `
-    <a href=#${_data.countryName}>
+    <a href="#${_data.countryName}">
       <div class="countryContainer">
         <div class="countryFlagContainer">
           <img class="countryFlag" src="${_data.flag}" alt="Country flag">

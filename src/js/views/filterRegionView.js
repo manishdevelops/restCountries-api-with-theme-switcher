@@ -33,19 +33,24 @@ class FilterReionView extends View {
 		this._parentElement.innerHTML = '';
 	}
 
-	clearSpinner() {
-		document.querySelector('.spinnerContainer').remove();
+	_manageActiveRegion(regionIndex) {
+		this._regions.forEach((list) => list.classList.remove('region-active'));
+		this._regions[regionIndex].classList.add('region-active');
 	}
 
-	renderSpinner() {
-		const markup = `
-      <div class="spinnerContainer">
-        <box-icon class="spinner" name='loader-circle' animation='spin' ></box-icon>
-      </div>
-    `;
-		this._clear();
-		this._parentElement.insertAdjacentHTML('afterbegin', markup);
-	}
+	// clearSpinner() {
+	// 	document.querySelector('.spinnerContainer').remove();
+	// }
+
+	// renderSpinner() {
+	// 	const markup = `
+	//   <div class="spinnerContainer">
+	//     <box-icon class="spinner" name='loader-circle' animation='spin' ></box-icon>
+	//   </div>
+	// `;
+	// 	this._clear();
+	// 	this._parentElement.insertAdjacentHTML('afterbegin', markup);
+	// }
 
 	_generateMarkUp() {
 		console.log(this._data);
@@ -68,11 +73,6 @@ class FilterReionView extends View {
     </div>
     </a>
     `;
-	}
-
-	_manageActiveRegion(regionIndex) {
-		this._regions.forEach((list) => list.classList.remove('region-active'));
-		this._regions[regionIndex].classList.add('region-active');
 	}
 }
 
