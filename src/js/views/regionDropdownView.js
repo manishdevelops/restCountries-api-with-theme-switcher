@@ -7,7 +7,6 @@ class FilterRegionView {
 		this._parentBtn.addEventListener('click', handler);
 		this._regionsContainer.addEventListener('click', (e) => {
 			const btn = e.target.closest('.region');
-			console.log(e.target.closest('.region'));
 			if (!btn) return;
 			handler();
 		});

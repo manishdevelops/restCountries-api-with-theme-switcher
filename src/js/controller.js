@@ -9,7 +9,7 @@ import moreFilterRegionView from './moreFilterRegionView.js';
 import searchCountryView from './views/searchCountryView.js';
 import 'boxicons';
 
-const controlCountries = async function () {
+const controlCountries = async () => {
 	try {
 		countriesView.renderSpinner();
 		await model.loadCountries();
@@ -18,7 +18,6 @@ const controlCountries = async function () {
 		moreCountriesView.render(model.state);
 		searchCountryView.render(model.state.countries);
 		countriesView.clearSpinner();
-		console.log(firstPageData);
 	} catch (err) {
 		console.log(err);
 		countriesView.renderTimeoutError(err);
@@ -31,8 +30,6 @@ const controlMoreCountries = (nextPage) => {
 	const renderMoreCountries = model.getResultsPage(nextPage);
 	countriesView.render(renderMoreCountries);
 	moreCountriesView.render(model.state);
-	// moreCountriesView.render();
-	// console.log(a);
 };
 
 const controlTheme = () => {
@@ -52,27 +49,22 @@ const controlFilterRegion = (regionName) => {
 	filterRegionView.clear();
 	model.setSelectedRegion(regionName);
 	const firstRegionPage = model.getRegionResultsPage();
-	console.log(firstRegionPage);
 	filterRegionView.render(firstRegionPage);
 	moreFilterRegionView.render(model.state);
 };
 
 const controlMoreFilterRegion = (nextPage) => {
-	// model.setSelectedRegion(nextPage);
-	// moreFilterRegionView.clear();
 	searchCountryView.clearSearchResults();
-	console.log(nextPage);
 	const moreFilteredData = model.getRegionResultsPage(nextPage);
-	console.log(moreFilteredData);
 	filterRegionView.render(moreFilteredData);
 	moreFilterRegionView.render(model.state);
 };
 
-const controlReload = function () {
+const controlReload = () => {
 	reloadView.reloadPage();
 };
 
-const controlSearchCountry = function (name) {
+const controlSearchCountry = (name) => {
 	searchCountryView.hidePreviousData('none');
 	searchCountryView.searchCountry(name);
 };

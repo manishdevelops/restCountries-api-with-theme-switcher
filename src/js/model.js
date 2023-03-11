@@ -3,13 +3,14 @@ import {
 	RES_PER_PAGE,
 	TIMEOUT_SEC,
 	REGION_RES_PER_PAGE,
+	PRE_PAGE_LOAD,
 } from './config.js';
 
-const timeout = function (s) {
+const timeout = (s) => {
 	return new Promise(function (_, reject) {
 		setTimeout(function () {
 			reject(new Error(`Request took too long! Timeout after ${s} second`));
-		}, s * 1000);
+		}, s * PRE_PAGE_LOAD);
 	});
 };
 
@@ -46,7 +47,6 @@ export const loadCountries = async () => {
 			flag: country.flag,
 		}));
 		state.regions.All = state.countries;
-		console.log(state.regions.All);
 		state.countries.filter(function (country) {
 			country.region === 'Africa' && state.regions.Africa.push(country);
 			country.region === 'Americas' && state.regions.America.push(country);
@@ -68,7 +68,6 @@ export const getResultsPage = function (page = state.page) {
 	state.page = page;
 	const start = (page - 1) * state.resultsPerPage;
 	const end = page * state.resultsPerPage;
-	console.log(start, end);
 	return state.countries.slice(start, end);
 };
 
@@ -78,6 +77,5 @@ export const getRegionResultsPage = function (
 	state.selectedRegion.page = page;
 	const start = (page - 1) * state.selectedRegion.resultsPerPage;
 	const end = page * state.selectedRegion.resultsPerPage;
-	console.log('regions page = ', start, end);
 	return state.regions[state.selectedRegion.region].slice(start, end);
 };

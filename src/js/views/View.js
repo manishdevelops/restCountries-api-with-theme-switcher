@@ -15,6 +15,24 @@ export default class View {
 		this._parentElement.innerHTML = '';
 	}
 
+	generateMarkUpPreview(_data) {
+		return `
+			<a href="#${_data.countryName}">
+			<div class="countryContainer">
+				<div class="countryFlagContainer">
+				<img class="countryFlag" src="${_data.flag}" alt="Country flag">
+				</div>
+				<div class="countryDetails">
+				<p class="countryName">${_data.countryName}</p>
+				<p class="countryPopulation"><span>Population:</span>${_data.population}</p>
+				<p class="countryRegion"><span>Region:</span><span>${_data.region}</span></p>
+				<p class="countryCapital"><span>Capital:</span>${_data.capital}</p>
+				</div>
+			</div>
+			</a>
+    	`;
+	}
+
 	//observer
 	createObserver() {
 		this._countries = document.querySelectorAll('.countryContainer');

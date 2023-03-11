@@ -1,4 +1,5 @@
 import View from './View.js';
+import { PRE_PAGE_LOAD } from '../config.js';
 
 class MoreCountriesView extends View {
 	_data;
@@ -8,22 +9,19 @@ class MoreCountriesView extends View {
 	render(data) {
 		this.clear();
 		this._data = data;
-		console.log(this._data);
 		this._generateMarkup();
 	}
 
 	addHandlerClick(handler) {
 		this.parentElement.addEventListener('click', (e) => {
 			const btn = e.target.closest('.load-more-btn');
-			console.log(btn);
 			if (!btn) return;
 			const nextPage = +btn.dataset.nextpage;
-			console.log(nextPage);
 			this.clear();
 			this.renderPrePageLoader();
 			setTimeout(function () {
 				handler(nextPage);
-			}, 1000);
+			}, PRE_PAGE_LOAD);
 		});
 	}
 
@@ -36,9 +34,6 @@ class MoreCountriesView extends View {
 		const numPages = Math.ceil(
 			this._data.countries.length / this._data.resultsPerPage
 		);
-		console.log('num of pages' + numPages);
-		console.log('current Page' + curPage);
-		console.log('total countries' + this._data.countries.length);
 		if (curPage < numPages) {
 			const markup = `
       		<button data-nextpage = "${
