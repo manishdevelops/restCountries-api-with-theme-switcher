@@ -45,9 +45,6 @@ body {
         margin-right: .5rem;
       }
 
-      // .darkMoon {
-      //   display: none;
-      // }
     }
   }
 
@@ -150,6 +147,7 @@ body {
       }
     }
   }
+
   .body-blur {
     transition: .5s all;
   }
@@ -417,4 +415,8 @@ body {
     opacity: 0;
     transform: translateY(8rem);
   }
+}
+
+.hide {
+  display: none;
 }

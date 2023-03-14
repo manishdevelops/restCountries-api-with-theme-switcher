@@ -18,6 +18,7 @@ export const state = {
 	countries: [],
 	resultsPerPage: RES_PER_PAGE,
 	page: 1,
+	code: '',
 	regions: {
 		Africa: [],
 		America: [],
@@ -33,27 +34,89 @@ export const state = {
 	},
 };
 
-export const loadCountries = async () => {
+const setData = (data) => {
+	state.countries = data.map((country) => ({
+		countryName: country.name,
+		population: country.population,
+		region: country.region,
+		capital: country.capital,
+		flag: country.flag,
+	}));
+	state.regions.All = state.countries;
+	state.countries.filter(function (country) {
+		country.region === 'Africa' && state.regions.Africa.push(country);
+		country.region === 'Americas' && state.regions.America.push(country);
+		country.region === 'Asia' && state.regions.Asia.push(country);
+		country.region === 'Europe' && state.regions.Europe.push(country);
+		country.region === 'Oceania' && state.regions.Oceania.push(country);
+	});
+};
+
+export const detailCountry = {
+	name: '',
+	nativeName: '',
+	population: '',
+	region: '',
+	subRegion: '',
+	capital: '',
+	topLevelDomain: '',
+	currencies: '',
+	languages: [],
+	borders: [],
+};
+
+setDetailData = (data) => {
+	console.log(data);
+	const {
+		name,
+		nativeName,
+		population,
+		region,
+		subregion,
+		capital,
+		topLevelDomain,
+		currencies,
+		languages,
+		borders,
+	} = data;
+
+	detailCountry.name = name;
+	detailCountry.population = population;
+	detailCountry.region = region;
+	detailCountry.nativeName = nativeName;
+	detailCountry.subRegion = subregion;
+	detailCountry.capital = capital;
+	detailCountry.topLevelDomain[0];
+	detailCountry.topLevelDomain = topLevelDomain;
+	detailCountry.currencies = currencies;
+	detailCountry.languages = languages;
+	detailCountry.borders = borders;
+	console.log(detailCountry);
+};
+
+export const loadCountries = async (name = '', code = '') => {
 	try {
-		const fetchPro = fetch(API_URL);
+		// const fetchPro = fetch(
+		// 	code ? `${API_URL}/alpha/${code}` : `${API_URL}/all`
+		// );
+		// // console.log(url);
+		// // const fetchPro = fetch(
+		// // 	name ? `${API_URL}/alpha/${code}` : `${API_URL}/all`
+		// // );
+		const fetchPro = fetch(
+			name
+				? `${API_URL}/name/${name}`
+				: code
+				? `${API_URL}/alpha/${code}`
+				: `${API_URL}/all`
+		);
 		const res = await Promise.race([fetchPro, timeout(TIMEOUT_SEC)]);
 		if (!res.ok) throw new Error(`Something went wrong (${res.status})`);
 		const data = await res.json();
-		state.countries = data.map((country) => ({
-			countryName: country.name,
-			population: country.population,
-			region: country.region,
-			capital: country.capital,
-			flag: country.flag,
-		}));
-		state.regions.All = state.countries;
-		state.countries.filter(function (country) {
-			country.region === 'Africa' && state.regions.Africa.push(country);
-			country.region === 'Americas' && state.regions.America.push(country);
-			country.region === 'Asia' && state.regions.Asia.push(country);
-			country.region === 'Europe' && state.regions.Europe.push(country);
-			country.region === 'Oceania' && state.regions.Oceania.push(country);
-		});
+		console.log(data);
+		!code && !name && setData(data);
+		name && setDetailData(data[0]);
+		code && detailCountry.borders.push(data.name);
 	} catch (err) {
 		throw new Error(`Opps! ${err.message}`);
 	}

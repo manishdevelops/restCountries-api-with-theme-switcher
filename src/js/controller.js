@@ -7,6 +7,7 @@ import reloadView from './views/reloadView.js';
 import filterRegionView from './views/filterRegionView.js';
 import moreFilterRegionView from './moreFilterRegionView.js';
 import searchCountryView from './views/searchCountryView.js';
+import detailView from './views/detailView.js';
 import 'boxicons';
 
 const controlCountries = async () => {
@@ -69,6 +70,18 @@ const controlSearchCountry = (name) => {
 	searchCountryView.searchCountry(name);
 };
 
+const controlCountryDeatails = async (name) => {
+	console.log(name);
+	await model.loadCountries(name);
+	const borders = model.detailCountry.borders;
+	console.log(borders);
+	model.detailCountry.borders = [];
+	borders.forEach(async (code) => {
+		await model.loadCountries('', code);
+	});
+	console.log(model.detailCountry);
+};
+
 const init = async () => {
 	await controlCountries();
 	themeView.addHandlerTheme(controlTheme);
@@ -79,5 +92,6 @@ const init = async () => {
 	moreCountriesView.addHandlerClick(controlMoreCountries);
 	reloadView.addHandlerReload(controlReload);
 	searchCountryView.addHandlerInput(controlSearchCountry);
+	detailView.addHandlerClick(controlCountryDeatails);
 };
 init();
