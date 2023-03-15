@@ -54,7 +54,7 @@ class SearchCountryView extends View {
 
 	_generateMarkUpPreview(country) {
 		return `
-	<a href="#${country.countryName}">
+	<a href="#">
 	  <div class="countryContainer">
 	    <div class="countryFlagContainer">
 	      <img class="countryFlag" src="${country.flag}" alt="Country flag">

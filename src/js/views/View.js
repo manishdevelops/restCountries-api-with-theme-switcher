@@ -17,7 +17,7 @@ export default class View {
 
 	generateMarkUpPreview(_data) {
 		return `
-			<a href="#${_data.countryName}">
+			<a href="#">
 			<div class="countryContainer">
 				<div class="countryFlagContainer">
 				<img class="countryFlag" src="${_data.flag}" alt="Country flag">
@@ -31,6 +31,14 @@ export default class View {
 			</div>
 			</a>
     	`;
+	}
+
+	reloadPage() {
+		location.reload();
+	}
+
+	themeChange() {
+		this.parentElement.classList.toggle('dark-theme');
 	}
 
 	//observer

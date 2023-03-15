@@ -1,14 +1,12 @@
-class ThemeView {
-  _parentElement = document.querySelector('body');
-  _themeBtn = document.querySelector('.main__header--themeToggle');
+import View from './View';
 
-  addHandlerTheme(handler) {
-    this._themeBtn.addEventListener('click', handler);
-  }
+class ThemeView extends View {
+	parentElement = document.querySelector('body');
+	_themeBtn = document.querySelector('.main__header--themeToggle');
 
-  themeChange() {
-    this._parentElement.classList.toggle('dark-theme');
-  }
+	addHandlerTheme(handler) {
+		this._themeBtn.addEventListener('click', handler);
+	}
 }
 
 export default new ThemeView();

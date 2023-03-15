@@ -70,16 +70,23 @@ const controlSearchCountry = (name) => {
 	searchCountryView.searchCountry(name);
 };
 
-const controlCountryDeatails = async (name) => {
+const controlCountryDetails = async (name) => {
 	console.log(name);
 	await model.loadCountries(name);
 	const borders = model.detailCountry.borders;
 	console.log(borders);
 	model.detailCountry.borders = [];
-	borders.forEach(async (code) => {
-		await model.loadCountries('', code);
-	});
-	console.log(model.detailCountry);
+	await model.loadBorders(borders);
+	console.log(model.detailCountry.borders.length);
+	detailView.render(model.detailCountry);
+};
+
+const controlDisplay = () => {
+	detailView.toggleDisplay();
+};
+
+const controlDetailTheme = () => {
+	detailView.themeChange();
 };
 
 const init = async () => {
@@ -92,6 +99,9 @@ const init = async () => {
 	moreCountriesView.addHandlerClick(controlMoreCountries);
 	reloadView.addHandlerReload(controlReload);
 	searchCountryView.addHandlerInput(controlSearchCountry);
-	detailView.addHandlerClick(controlCountryDeatails);
+	detailView.addHandlerCountryClick(controlCountryDetails);
+	detailView.addHandlerBack(controlDisplay);
+	detailView.addHandlerReload(controlReload);
+	detailView.addHandlerTheme(controlDetailTheme);
 };
 init();

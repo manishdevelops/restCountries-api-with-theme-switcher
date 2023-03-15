@@ -1,0 +1,54 @@
+@use '_variables' as var;
+
+
+@mixin icon_color() {
+    .moon, .arrow-back  {
+      fill: white !important;
+    }
+}
+
+@mixin set_themes($text-clr, $bg-1, $bg-2, $box-shad ) {
+    .detail__header__themeSection {
+        box-shadow: $box-shad !important;
+        background-color: $bg-1;
+        color: $text-clr !important;
+
+    }
+
+    .detail__backBtn {
+        background-color: $bg-2;
+        color: $text-clr !important;
+    }
+
+    .backBtn {
+        box-shadow: $box-shad !important;
+        background-color: $bg-1 !important;
+    }
+
+    .detail__country {
+        background-color: $bg-2 !important;
+        color: $text-clr !important;
+    }
+    .border-country {
+        box-shadow: $box-shad !important;
+        background-color: $bg-1 !important;
+        color: $text-clr !important;
+    }
+}
+
+.light-theme {
+   @include set_themes(var.$Very-Dark-Blue_Light-Mode-Text, var.$Very-Light-Gray_Light-Mode-Background,
+   var.$Very-Light-Gray_Light-Mode-Background,
+   0 0 10px 5px rgba(173, 167, 167,0.1),
+   );
+}
+
+.dark-theme {
+    @include set_themes(var.$White_Dark-Mode-Text-and-Light-Mode-Elements,
+    var.$Dark-Blue_Dark-Mode-Elements,
+    var.$Very-Dark-Blue_Dark-Mode-Background,
+    0 10px 20px 2px #0003
+    );
+
+    @include icon_color();
+}

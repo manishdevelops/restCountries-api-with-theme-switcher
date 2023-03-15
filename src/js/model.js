@@ -63,6 +63,7 @@ export const detailCountry = {
 	currencies: '',
 	languages: [],
 	borders: [],
+	flag: '',
 };
 
 setDetailData = (data) => {
@@ -78,20 +79,28 @@ setDetailData = (data) => {
 		currencies,
 		languages,
 		borders,
+		flag,
 	} = data;
 
 	detailCountry.name = name;
+	detailCountry.flag = flag;
 	detailCountry.population = population;
 	detailCountry.region = region;
 	detailCountry.nativeName = nativeName;
 	detailCountry.subRegion = subregion;
 	detailCountry.capital = capital;
-	detailCountry.topLevelDomain[0];
-	detailCountry.topLevelDomain = topLevelDomain;
+	detailCountry.topLevelDomain = topLevelDomain[0];
 	detailCountry.currencies = currencies;
 	detailCountry.languages = languages;
 	detailCountry.borders = borders;
 	console.log(detailCountry);
+};
+
+export const loadBorders = async (borders) => {
+	if (!borders) return;
+	borders.forEach(async (code) => {
+		await loadCountries('', code);
+	});
 };
 
 export const loadCountries = async (name = '', code = '') => {
@@ -105,7 +114,7 @@ export const loadCountries = async (name = '', code = '') => {
 		// // );
 		const fetchPro = fetch(
 			name
-				? `${API_URL}/name/${name}`
+				? `${API_URL}/name/${name}?fullText=true`
 				: code
 				? `${API_URL}/alpha/${code}`
 				: `${API_URL}/all`
