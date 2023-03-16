@@ -16,19 +16,19 @@ class DetailView extends View {
 		console.log(this._data.borders);
 		const detailMarkup = this.generateMarkUpPreview(this._data);
 		this.parentElement.insertAdjacentHTML('afterbegin', detailMarkup);
-		const borderMarkUp = this.m();
-		document
-			.querySelector('.borders')
-			.insertAdjacentHTML('afterbegin', borderMarkUp);
+		//const borderMarkUp = this.m();
+		// document
+		// .querySelector('.borders')
+		// .insertAdjacentHTML('afterbegin', borderMarkUp);
 		// console.log(document.querySelector('.borders'));
 		// console.log(borderMarkUp);
 	}
 
-	m() {
-		// return this._data.borders.map(this.borderMarkUp).join('');
-		this._data.borders.forEach((border) => console.log(border));
-		console.log(this._data.borders);
-	}
+	// m() {
+	// 	// return this._data.borders.map(this.borderMarkUp).join('');
+	// 	this._data.borders.forEach((border) => console.log(border));
+	// 	console.log(this._data.borders);
+	// }
 
 	borderMarkUp(borders) {
 		return `<button class="border-country">
@@ -127,7 +127,7 @@ class DetailView extends View {
 								this._data.subRegion
 							}</span></p>
 						  <p class="capital"><span>Capital: </span> <span>${
-								this._data.subRegion
+								this._data.capital
 							}</span></p>
 						</div>
 						<div class="detail__country-info2">

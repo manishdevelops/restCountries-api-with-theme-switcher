@@ -66,8 +66,7 @@ export const detailCountry = {
 	flag: '',
 };
 
-setDetailData = (data) => {
-	console.log(data);
+const setDetailData = (data) => {
 	const {
 		name,
 		nativeName,
@@ -88,20 +87,26 @@ setDetailData = (data) => {
 	detailCountry.region = region;
 	detailCountry.nativeName = nativeName;
 	detailCountry.subRegion = subregion;
-	detailCountry.capital = capital;
+	detailCountry.capital = capital ? capital : '';
 	detailCountry.topLevelDomain = topLevelDomain[0];
 	detailCountry.currencies = currencies;
 	detailCountry.languages = languages;
-	detailCountry.borders = borders;
+	detailCountry.borders = borders ? [...borders] : [''];
+	console.log(borders);
 	console.log(detailCountry);
 };
 
-export const loadBorders = async (borders) => {
-	if (!borders) return;
-	borders.forEach(async (code) => {
+export const loadBorders = async (bordersCode) => {
+	detailCountry.borders = [];
+	if (bordersCode.length === 0) return;
+	console.log(bordersCode);
+	for (code of bordersCode) {
 		await loadCountries('', code);
-	});
+	}
+	console.log(detailCountry.borders);
 };
+
+// export const arr = [];
 
 export const loadCountries = async (name = '', code = '') => {
 	try {
@@ -126,6 +131,10 @@ export const loadCountries = async (name = '', code = '') => {
 		!code && !name && setData(data);
 		name && setDetailData(data[0]);
 		code && detailCountry.borders.push(data.name);
+		// return code && data;
+		// code && detailCountry.borders.push(data.name);
+		// console.log(detailCountry.borders);
+		// code && arr.push(data.name);
 	} catch (err) {
 		throw new Error(`Opps! ${err.message}`);
 	}

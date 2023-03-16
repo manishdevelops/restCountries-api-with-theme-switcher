@@ -71,14 +71,12 @@ const controlSearchCountry = (name) => {
 };
 
 const controlCountryDetails = async (name) => {
-	console.log(name);
 	await model.loadCountries(name);
-	const borders = model.detailCountry.borders;
-	console.log(borders);
-	model.detailCountry.borders = [];
-	await model.loadBorders(borders);
-	console.log(model.detailCountry.borders.length);
+	const bord = model.detailCountry.borders;
+	console.log(bord);
+	bord && (await model.loadBorders(bord));
 	detailView.render(model.detailCountry);
+	console.log(model.detailCountry.borders.length);
 };
 
 const controlDisplay = () => {

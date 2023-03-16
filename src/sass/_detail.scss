@@ -14,12 +14,14 @@ body {
   display: flex;
   justify-content: space-between;
   padding: 1.7rem clamp(1rem, 5vw, 3rem);
-  // box-shadow:  0 0 10px 5px rgba(173, 167, 167,0.1), 0px 15px 10px -15px rgba(173, 167, 167,.3) !important;
+  margin-block-end: 1rem;
+  box-shadow:  0 0 10px 5px rgba(173, 167, 167,0.1), 0px 15px 10px -15px rgba(173, 167, 167,.3) !important;
+  box-shadow: 0 1rem 1rem -1.2rem black;
 
   .detail__header__heading {
     all: unset;
     font-weight: 700;
-    font-size: clamp(1rem, 0.8005475rem + 1.3309vw, 2rem);
+    // font-size: clamp(1rem, 0.8005475rem + 1.3309vw, 2rem);
   }
 
   .detail__header--themeToggle {
