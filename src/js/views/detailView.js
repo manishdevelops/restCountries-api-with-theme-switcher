@@ -12,37 +12,41 @@ class DetailView extends View {
 	_mainHeading = document.querySelector('.detail__header__heading');
 
 	render(data) {
+		this._clear();
 		this._data = data;
 		console.log(this._data.borders);
 		const detailMarkup = this.generateMarkUpPreview(this._data);
 		this.parentElement.insertAdjacentHTML('afterbegin', detailMarkup);
-		//const borderMarkUp = this.m();
-		// document
-		// .querySelector('.borders')
-		// .insertAdjacentHTML('afterbegin', borderMarkUp);
-		// console.log(document.querySelector('.borders'));
-		// console.log(borderMarkUp);
+		const borderMarkUp = this.borderMarkUp();
+		document
+			.querySelector('.borders')
+			.insertAdjacentHTML('afterbegin', borderMarkUp);
 	}
 
-	// m() {
-	// 	// return this._data.borders.map(this.borderMarkUp).join('');
-	// 	this._data.borders.forEach((border) => console.log(border));
-	// 	console.log(this._data.borders);
-	// }
+	borderMarkUp() {
+		return this._data.borders.map(this.borderMarkUpPreview).join('');
+	}
 
-	borderMarkUp(borders) {
-		return `<button class="border-country">
-		${borders}
-	  </button>
+	borderMarkUpPreview(borders) {
+		return `
+		<button class="border-country">
+			${borders}
+	  	</button>
 	  `;
+	}
+
+	detailPage(viewHeight) {
+		this.parentElement.style.minHeight = viewHeight;
 	}
 
 	addHandlerCountryClick(handler) {
 		this._body.addEventListener('click', (e) => {
 			const container = e.target.closest('.countryContainer');
 			if (!container) return;
+			this.detailPage('100vh');
 			const name = container.children[1].children[0].textContent;
-			this.toggleDisplay();
+			this.hideDisplay();
+			// this.renderSpinner();
 			handler(name);
 		});
 	}
@@ -53,6 +57,7 @@ class DetailView extends View {
 			console.log(btn);
 			if (!btn) return;
 			this._clear();
+			this.detailPage('0vh');
 			hander();
 		});
 	}
@@ -73,7 +78,7 @@ class DetailView extends View {
 		});
 	}
 
-	toggleDisplay() {
+	hideDisplay() {
 		[this._header, this._section1, this._section2, this._searchSection].forEach(
 			(ele) => ele.classList.toggle('hide')
 		);
@@ -87,7 +92,7 @@ class DetailView extends View {
 		return borders.map((border) => {
 			`
 		<button class="border-country">
-			${border}
+			${border.spilt(' ')[0]}
 		</button>
 		`.join(' ');
 		});
@@ -109,9 +114,9 @@ class DetailView extends View {
 					</button>
 				  </div>
 				  <section class="detail__country">
-					<div class="detail__countryFlag">
+					<figure class="detail__countryFlag">
 					  <img class="country-flag" src="${this._data.flag}" alt="country-flag">
-					</div>
+					</figure>
 					<div class="detail__info">
 					  <p class="countryName">${this._data.name}</p>
 					  <div class="detail__country-info">
@@ -149,18 +154,7 @@ class DetailView extends View {
 					  <div class="detail__borders">
 						<p>Border Countries:</p>
 						<div class="borders">
-						<button class="border-country">
-						 	France
-						  </button>
-						  <button class="border-country">
-							Germany
-						  </button>
-						  <button class="border-country">
-						 	Netherlands
-						   </button>
-						   <button class="border-country">
-						 	Netherlands
-						   </button>
+						
 						   
 						</div>
 					  </div>

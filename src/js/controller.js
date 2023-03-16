@@ -71,16 +71,16 @@ const controlSearchCountry = (name) => {
 };
 
 const controlCountryDetails = async (name) => {
+	detailView.renderSpinner();
 	await model.loadCountries(name);
 	const bord = model.detailCountry.borders;
 	console.log(bord);
 	bord && (await model.loadBorders(bord));
 	detailView.render(model.detailCountry);
-	console.log(model.detailCountry.borders.length);
 };
 
 const controlDisplay = () => {
-	detailView.toggleDisplay();
+	detailView.hideDisplay();
 };
 
 const controlDetailTheme = () => {

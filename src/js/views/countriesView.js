@@ -2,17 +2,17 @@ import View from './View.js';
 
 class CountriesView extends View {
 	_data;
-	_parentElement = document.querySelector('.main__section1');
+	parentElement = document.querySelector('.main__section1');
 
 	render(data) {
 		this._data = data;
 		const markup = this._generateMarkUp();
-		this._parentElement.insertAdjacentHTML('beforeend', markup);
+		this.parentElement.insertAdjacentHTML('beforeend', markup);
 		this.createObserver();
 	}
 
 	_clear() {
-		this._parentElement.innerHTML = '';
+		this.parentElement.innerHTML = '';
 	}
 
 	clearSpinner() {
@@ -28,17 +28,7 @@ class CountriesView extends View {
 				</div>
 		`;
 		this._clear();
-		this._parentElement.insertAdjacentHTML('beforeend', markup);
-	}
-
-	renderSpinner() {
-		const markup = `
-      <div class="spinnerContainer">
-        <box-icon class="spinner" name='loader-circle' animation='spin' ></box-icon>
-      </div>
-    `;
-		this._clear();
-		this._parentElement.insertAdjacentHTML('afterbegin', markup);
+		this.parentElement.insertAdjacentHTML('beforeend', markup);
 	}
 
 	_generateMarkUp() {

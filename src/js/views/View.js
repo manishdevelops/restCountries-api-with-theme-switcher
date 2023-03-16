@@ -11,6 +11,16 @@ export default class View {
 		this.parentElement.insertAdjacentHTML('afterbegin', markup);
 	}
 
+	renderSpinner() {
+		const markup = `
+      <div class="spinnerContainer">
+        <box-icon class="spinner" name='loader-circle' animation='spin' ></box-icon>
+      </div>
+    `;
+		this._clear();
+		this.parentElement.insertAdjacentHTML('afterbegin', markup);
+	}
+
 	clearSearchResults() {
 		this._parentElement.innerHTML = '';
 	}
@@ -19,9 +29,9 @@ export default class View {
 		return `
 			<a href="#">
 			<div class="countryContainer">
-				<div class="countryFlagContainer">
+				<figure class="countryFlagContainer">
 				<img class="countryFlag" src="${_data.flag}" alt="Country flag">
-				</div>
+				</figure>
 				<div class="countryDetails">
 				<p class="countryName">${_data.countryName}</p>
 				<p class="countryPopulation"><span>Population:</span>${_data.population}</p>

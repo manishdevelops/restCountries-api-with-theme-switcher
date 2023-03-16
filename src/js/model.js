@@ -106,17 +106,8 @@ export const loadBorders = async (bordersCode) => {
 	console.log(detailCountry.borders);
 };
 
-// export const arr = [];
-
 export const loadCountries = async (name = '', code = '') => {
 	try {
-		// const fetchPro = fetch(
-		// 	code ? `${API_URL}/alpha/${code}` : `${API_URL}/all`
-		// );
-		// // console.log(url);
-		// // const fetchPro = fetch(
-		// // 	name ? `${API_URL}/alpha/${code}` : `${API_URL}/all`
-		// // );
 		const fetchPro = fetch(
 			name
 				? `${API_URL}/name/${name}?fullText=true`
@@ -131,10 +122,6 @@ export const loadCountries = async (name = '', code = '') => {
 		!code && !name && setData(data);
 		name && setDetailData(data[0]);
 		code && detailCountry.borders.push(data.name);
-		// return code && data;
-		// code && detailCountry.borders.push(data.name);
-		// console.log(detailCountry.borders);
-		// code && arr.push(data.name);
 	} catch (err) {
 		throw new Error(`Opps! ${err.message}`);
 	}
