@@ -10,43 +10,27 @@ class DetailView extends View {
 	parentElement = document.querySelector('.detail');
 	_backBtn = document.querySelector('backBtn');
 	_mainHeading = document.querySelector('.detail__header__heading');
+	_border = document.querySelector('.border-country');
 
 	render(data) {
-		this._clear();
+		this.clear();
 		this._data = data;
 		console.log(this._data.borders);
-		const detailMarkup = this.generateMarkUpPreview(this._data);
+		const detailMarkup = this._generateMarkUpPreview(this._data);
 		this.parentElement.insertAdjacentHTML('afterbegin', detailMarkup);
-		const borderMarkUp = this.borderMarkUp();
+		const borderMarkUp = this._borderMarkUp();
 		document
 			.querySelector('.borders')
 			.insertAdjacentHTML('afterbegin', borderMarkUp);
-	}
-
-	borderMarkUp() {
-		return this._data.borders.map(this.borderMarkUpPreview).join('');
-	}
-
-	borderMarkUpPreview(borders) {
-		return `
-		<button class="border-country">
-			${borders}
-	  	</button>
-	  `;
-	}
-
-	detailPage(viewHeight) {
-		this.parentElement.style.minHeight = viewHeight;
 	}
 
 	addHandlerCountryClick(handler) {
 		this._body.addEventListener('click', (e) => {
 			const container = e.target.closest('.countryContainer');
 			if (!container) return;
-			this.detailPage('100vh');
+			this._detailPage('100vh');
 			const name = container.children[1].children[0].textContent;
 			this.hideDisplay();
-			// this.renderSpinner();
 			handler(name);
 		});
 	}
@@ -56,8 +40,8 @@ class DetailView extends View {
 			const btn = e.target.closest('.backBtn');
 			console.log(btn);
 			if (!btn) return;
-			this._clear();
-			this.detailPage('0vh');
+			this.clear();
+			this._detailPage('0vh');
 			hander();
 		});
 	}
@@ -78,17 +62,44 @@ class DetailView extends View {
 		});
 	}
 
+	addHandlerBorder(handler) {
+		this._body.addEventListener('click', (e) => {
+			const btn = e.target.closest('.border-country');
+			console.log(btn);
+			if (!btn) return;
+			const country = btn.textContent;
+			console.log(country);
+			handler(country);
+		});
+	}
+
 	hideDisplay() {
 		[this._header, this._section1, this._section2, this._searchSection].forEach(
 			(ele) => ele.classList.toggle('hide')
 		);
 	}
 
-	_clear() {
+	clear() {
 		this.parentElement.innerHTML = '';
 	}
 
-	generateBorders(borders) {
+	_borderMarkUp() {
+		return this._data.borders.map(this._borderMarkUpPreview).join('');
+	}
+
+	_borderMarkUpPreview(borders) {
+		return `
+		<button class="border-country">
+			${borders}
+	  	</button>
+	  `;
+	}
+
+	_detailPage(viewHeight) {
+		this.parentElement.style.minHeight = viewHeight;
+	}
+
+	_generateBorders(borders) {
 		return borders.map((border) => {
 			`
 		<button class="border-country">
@@ -98,7 +109,7 @@ class DetailView extends View {
 		});
 	}
 
-	generateMarkUpPreview(_data) {
+	_generateMarkUpPreview(_data) {
 		return `
         <div class="detail__header__themeSection">
 					<button class="detail__header__heading">Where in this world?</button>

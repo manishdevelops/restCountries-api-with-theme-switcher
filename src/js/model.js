@@ -37,7 +37,7 @@ export const state = {
 const setData = (data) => {
 	state.countries = data.map((country) => ({
 		countryName: country.name,
-		population: country.population,
+		population: country.population.toLocaleString('en-US'),
 		region: country.region,
 		capital: country.capital,
 		flag: country.flag,
@@ -83,7 +83,7 @@ const setDetailData = (data) => {
 
 	detailCountry.name = name;
 	detailCountry.flag = flag;
-	detailCountry.population = population;
+	detailCountry.population = population.toLocaleString('en-US');
 	detailCountry.region = region;
 	detailCountry.nativeName = nativeName;
 	detailCountry.subRegion = subregion;

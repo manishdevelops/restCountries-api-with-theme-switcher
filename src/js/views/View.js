@@ -17,8 +17,19 @@ export default class View {
         <box-icon class="spinner" name='loader-circle' animation='spin' ></box-icon>
       </div>
     `;
-		this._clear();
+		this.clear();
 		this.parentElement.insertAdjacentHTML('afterbegin', markup);
+	}
+
+	renderTimeoutError(err) {
+		console.log(err);
+		const markup = `
+				<div class="error">
+					<box-icon class="error-icon" name='error' animation='flashing' ></box-icon>
+					<p class="errorMessage">${err}</p>
+				</div>
+		`;
+		this.parentElement.insertAdjacentHTML('beforeend', markup);
 	}
 
 	clearSearchResults() {
@@ -48,7 +59,8 @@ export default class View {
 	}
 
 	themeChange() {
-		this.parentElement.classList.toggle('dark-theme');
+		document.querySelector('body').classList.toggle('dark-theme');
+		document.querySelector('.detail').classList.toggle('dark-theme');
 	}
 
 	//observer

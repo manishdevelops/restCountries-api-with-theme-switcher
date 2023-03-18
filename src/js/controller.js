@@ -21,6 +21,7 @@ const controlCountries = async () => {
 		countriesView.clearSpinner();
 	} catch (err) {
 		console.log(err);
+		countriesView.clear();
 		countriesView.renderTimeoutError(err);
 	}
 };
@@ -71,12 +72,17 @@ const controlSearchCountry = (name) => {
 };
 
 const controlCountryDetails = async (name) => {
-	detailView.renderSpinner();
-	await model.loadCountries(name);
-	const bord = model.detailCountry.borders;
-	console.log(bord);
-	bord && (await model.loadBorders(bord));
-	detailView.render(model.detailCountry);
+	try {
+		detailView.renderSpinner();
+		await model.loadCountries(name);
+		const bord = model.detailCountry.borders;
+		console.log(bord);
+		bord && (await model.loadBorders(bord));
+		detailView.render(model.detailCountry);
+	} catch (err) {
+		detailView.clear();
+		detailView.renderTimeoutError(err);
+	}
 };
 
 const controlDisplay = () => {
@@ -85,6 +91,11 @@ const controlDisplay = () => {
 
 const controlDetailTheme = () => {
 	detailView.themeChange();
+};
+
+const controlBorderCountry = (country) => {
+	console.log(country);
+	controlCountryDetails(country.trim());
 };
 
 const init = async () => {
@@ -101,5 +112,6 @@ const init = async () => {
 	detailView.addHandlerBack(controlDisplay);
 	detailView.addHandlerReload(controlReload);
 	detailView.addHandlerTheme(controlDetailTheme);
+	detailView.addHandlerBorder(controlBorderCountry);
 };
 init();

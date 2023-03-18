@@ -1,11 +1,6 @@
 @use '_variables' as var;
-@use '_mixins' as mixin;
+@use 'mixins' as mixin;
 
-@mixin icon_color() {
-    .moon, .arrow-back  {
-      fill: white !important;
-    }
-}
 
 @mixin set_themes($text-clr, $bg-1, $bg-2, $box-shad ) {
     .detail__header__themeSection {
@@ -38,7 +33,7 @@
 }
 
 .light-theme {
-   @include set_themes(var.$Very-Dark-Blue_Light-Mode-Text, var.$Very-Light-Gray_Light-Mode-Background,
+   @include set_themes(var.$Very-Dark-Blue_Light-Mode-Text, #fff,
    var.$Very-Light-Gray_Light-Mode-Background,
    0 0 10px 5px rgba(173, 167, 167,0.1),
    );
@@ -51,5 +46,5 @@
     0 10px 20px 2px #0003
     );
 
-    @include icon_color();
+    @include mixin.detail_icon_color();
 }

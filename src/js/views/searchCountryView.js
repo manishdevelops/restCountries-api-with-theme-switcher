@@ -19,7 +19,7 @@ class SearchCountryView extends View {
 
 	addHandlerInput(handler) {
 		this._countryNameInput.addEventListener('keyup', () => {
-			const search = this._countryNameInput.value;
+			const search = this._countryNameInput.value.trim();
 			this.clearSearchResults();
 			handler(search);
 		});

@@ -1,0 +1,25 @@
+@use 'theme-mixins';
+@use 'variables' as var;
+@use 'detail';
+@use 'detail-mixins';
+@use 'mixins' as mixin;
+@use 'header.scss';
+@use 'main.scss';
+@include mixin.render_error();
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+  
+::placeholder {
+    color: hsla(0, 0%, 52%,0.5);
+    font-weight: 400;
+}
+  
+body {
+    font-family: 'Nunito Sans', sans-serif;
+}

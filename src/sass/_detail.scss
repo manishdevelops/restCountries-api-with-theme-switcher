@@ -1,4 +1,15 @@
+@use 'mixins' as mixin;
+
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap');
+
+.detail {
+  .error{
+    @include mixin.render_error();
+    position: relative;
+    top: 40vh;
+  }
+}
+
 
 *{
   margin: 0;
@@ -21,6 +32,8 @@ body {
   margin-block-end: 1rem;
   box-shadow:  0 0 10px 5px rgba(173, 167, 167,0.1), 0px 15px 10px -15px rgba(173, 167, 167,.3) !important;
   // box-shadow: 0 1rem 1rem -1.2rem black;
+  text-shadow: 2px 7px 5px rgba(0,0,0,0.3), 0px -4px 10px rgba(255,255,255,0.3);
+
 
   .detail__header__heading {
     all: unset;
@@ -34,14 +47,12 @@ body {
     justify-content: space-between;
     align-items: center;
     font-weight: 600;
-    // @media (min-width:992px) {
-    //   // margin-inline-start: 1rem;
-    // }
     .moon {
       margin-right: .5rem;
     }
   }
 }
+
 .detail__backBtn {
   padding-block: 6vh 4vh;
   padding-inline: 7vw;
@@ -58,6 +69,7 @@ body {
     font-size: 13px;
     cursor: pointer;
     transition: all .3s;
+    text-shadow: 2px 7px 5px rgba(0,0,0,0.3), 0px -4px 10px rgba(255,255,255,0.3);
     .arrow-back {
       width: 30% !important;
     }
@@ -71,15 +83,16 @@ body {
   .countryName {
     font-size: 1.7rem;
     font-weight: 900;
+    text-decoration: underline;
    }
 }
 .detail__country {
   display: flex;
   align-items: center;
   flex-direction: column;
-  // padding-inline: 7vw;
   padding-block-end: 7vh ;
   padding: 2rem clamp(1rem, 5vw, 3rem) 1rem;
+  text-shadow: 2px 7px 5px rgba(0,0,0,0.3), 0px -4px 10px rgba(255,255,255,0.3);
   font-size: clamp(.875rem, .8333975rem + .1849vw, 1rem);
   @media (min-width:992px) {
   flex-direction: row;
@@ -91,6 +104,7 @@ body {
   flex-basis: 45%;
   .country-flag {
    width: 100%;
+   box-shadow: 0px 15px 10px rgba(0,0,0,0.15);
   }
 }
 
@@ -122,7 +136,6 @@ body {
 
 .detail__borders {
   margin-block-start: 5vh;
-
   @media (min-width:992px) {
     display: flex;
     justify-content: space-between;
@@ -150,6 +163,19 @@ body {
       font-size: 13px;
       transition: all .3s;
       cursor: pointer;
+    }
+  }
+}
+
+.detail {
+  .spinnerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    .spinner {
+      width: 50px;
+      height: 50px;
     }
   }
 }
