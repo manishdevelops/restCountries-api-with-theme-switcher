@@ -9,6 +9,8 @@ import moreFilterRegionView from './moreFilterRegionView.js';
 import searchCountryView from './views/searchCountryView.js';
 import detailView from './views/detailView.js';
 import 'boxicons';
+import 'core-js/stable';
+import 'regenrator-runtime/runtime';
 
 const controlCountries = async () => {
 	try {
