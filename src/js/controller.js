@@ -75,11 +75,11 @@ const controlCountryDetails = async (name) => {
 	try {
 		detailView.renderSpinner();
 		await model.loadCountries(name);
-		const bord = model.detailCountry.borders;
-		console.log(bord);
-		bord && (await model.loadBorders(bord));
+		const borders = model.detailCountry.borders;
+		borders && (await model.loadBorders(borders));
 		detailView.render(model.detailCountry);
 	} catch (err) {
+		console.log(err);
 		detailView.clear();
 		detailView.renderTimeoutError(err);
 	}
@@ -94,7 +94,6 @@ const controlDetailTheme = () => {
 };
 
 const controlBorderCountry = (country) => {
-	console.log(country);
 	controlCountryDetails(country.trim());
 };
 

@@ -92,18 +92,14 @@ const setDetailData = (data) => {
 	detailCountry.currencies = currencies;
 	detailCountry.languages = languages;
 	detailCountry.borders = borders ? [...borders] : [''];
-	console.log(borders);
-	console.log(detailCountry);
 };
 
 export const loadBorders = async (bordersCode) => {
 	detailCountry.borders = [];
 	if (bordersCode.length === 0) return;
-	console.log(bordersCode);
 	for (code of bordersCode) {
 		await loadCountries('', code);
 	}
-	console.log(detailCountry.borders);
 };
 
 export const loadCountries = async (name = '', code = '') => {
@@ -118,7 +114,6 @@ export const loadCountries = async (name = '', code = '') => {
 		const res = await Promise.race([fetchPro, timeout(TIMEOUT_SEC)]);
 		if (!res.ok) throw new Error(`Something went wrong (${res.status})`);
 		const data = await res.json();
-		console.log(data);
 		!code && !name && setData(data);
 		name && setDetailData(data[0]);
 		code && detailCountry.borders.push(data.name);

@@ -41,7 +41,7 @@ export default class View {
 			<a href="#">
 			<div class="countryContainer">
 				<figure class="countryFlagContainer">
-				<img class="countryFlag" src="${_data.flag}" alt="Country flag">
+				<img class="countryFlag" src="${_data.flag}" alt="${_data.countryName}-flag">
 				</figure>
 				<div class="countryDetails">
 				<p class="countryName">${_data.countryName}</p>

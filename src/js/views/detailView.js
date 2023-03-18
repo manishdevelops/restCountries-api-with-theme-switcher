@@ -15,7 +15,6 @@ class DetailView extends View {
 	render(data) {
 		this.clear();
 		this._data = data;
-		console.log(this._data.borders);
 		const detailMarkup = this._generateMarkUpPreview(this._data);
 		this.parentElement.insertAdjacentHTML('afterbegin', detailMarkup);
 		const borderMarkUp = this._borderMarkUp();
@@ -38,7 +37,6 @@ class DetailView extends View {
 	addHandlerBack(hander) {
 		this._body.addEventListener('click', (e) => {
 			const btn = e.target.closest('.backBtn');
-			console.log(btn);
 			if (!btn) return;
 			this.clear();
 			this._detailPage('0vh');
@@ -65,10 +63,8 @@ class DetailView extends View {
 	addHandlerBorder(handler) {
 		this._body.addEventListener('click', (e) => {
 			const btn = e.target.closest('.border-country');
-			console.log(btn);
 			if (!btn) return;
 			const country = btn.textContent;
-			console.log(country);
 			handler(country);
 		});
 	}
@@ -126,7 +122,9 @@ class DetailView extends View {
 				  </div>
 				  <section class="detail__country">
 					<figure class="detail__countryFlag">
-					  <img class="country-flag" src="${this._data.flag}" alt="country-flag">
+					  <img class="country-flag" src="${this._data.flag}" alt="${
+			this._data.name
+		}-flag">
 					</figure>
 					<div class="detail__info">
 					  <p class="countryName">${this._data.name}</p>
