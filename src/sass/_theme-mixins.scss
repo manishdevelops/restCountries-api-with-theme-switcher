@@ -2,7 +2,7 @@
 @use '_mixins' as mixin;
 
 
-@mixin set_themes($Bg-1, $Bg-2, $dropdown-clr1, $dropdown-clr2, $loadMorebtnClr) {
+@mixin set_themes($Bg-1, $Bg-2, $dropdown-clr1, $dropdown-clr2, $loadMorebtnClr, $input-text) {
   .main__header__themeSection {
     background-color: $Bg-2;
   }
@@ -25,6 +25,7 @@
   }
   #inputCountry {
     background-color: $Bg-2;
+    color: $input-text;
   }
   .countryContainer {
     @include mixin.animate();
@@ -38,7 +39,7 @@
 .light-theme {
   @include set_themes(var.$Very-Light-Gray_Light-Mode-Background,
   var.$White_Dark-Mode-Text-and-Light-Mode-Elements,
-  #03a9f4cf, white, black
+  #03a9f4cf, white, black, var.$Dark-Gray_Light-Mode-Input
   );
 
   .dropdown-items {
@@ -59,9 +60,9 @@
 
 //dark theme mode
 .dark-theme {
-  @include set_themes(var.$Very-Dark-Blue_Dark-Mode-Background,                                                                                                                       
+  @include set_themes(var.$Very-Dark-Blue_Dark-Mode-Background,                                                                                      
   var.$Dark-Blue_Dark-Mode-Elements, 
-  white, black, white
+  white, black, white, var.$White_Dark-Mode-Text-and-Light-Mode-Elements
   );
 
   @include mixin.icon_color();
