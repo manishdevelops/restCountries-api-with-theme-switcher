@@ -37,7 +37,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [solution URL here](https://github.com/Manish-d-art/restCountries-api-with-theme-switcher)
-- Live Site URL: [live site URL here](https://rest-countries-api-site.netlify.app)
+- Live Site URL: [live site URL here](https://rest-countries-api-mkm.netlify.app)
 
 ## My process
 
