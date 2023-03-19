@@ -108,7 +108,6 @@ class DetailView extends View {
 	_generateMarkUpPreview(_data) {
 		return `
         <div class="detail__header__themeSection">
-					<h2>Detail country view</h2>
 					<button class="detail__header__heading">Where in this world?</button>
 					<button class="detail__header--themeToggle">
 					  <box-icon class="moon" name='moon' animation='flashing' flip='horizontal' ></box-icon>
