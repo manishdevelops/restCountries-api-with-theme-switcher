@@ -30,9 +30,9 @@ body {
   justify-content: space-between;
   padding: 1.7rem clamp(1rem, 5vw, 3rem);
   margin-block-end: 1rem;
-  box-shadow:  0 0 10px 5px rgba(173, 167, 167,0.1), 0px 15px 10px -15px rgba(173, 167, 167,.3) !important;
+  box-shadow:  0 0 0.625rem 0.3125rem rgba(173, 167, 167,0.1), 0px 0.9375rem 0.625rem -0.9375rem rgba(173, 167, 167,.3) !important;
   // box-shadow: 0 1rem 1rem -1.2rem black;
-  text-shadow: 2px 7px 5px rgba(0,0,0,0.3), 0px -4px 10px rgba(255,255,255,0.3);
+  text-shadow: 0.125rem 0.4375rem 0.3125rem rgba(0,0,0,0.3), 0rem -0.25rem 0.625rem rgba(255,255,255,0.3);
 
 
   .detail__header__heading {
@@ -59,17 +59,17 @@ body {
 
   .backBtn {
     all: unset;
-    width: 85px;
-    height: 35px;
+    width: 5.3125rem;
+    height: 2.1875rem;
     padding-inline-end: 1rem;
     display: flex;
     justify-content: space-around;
     align-items: center;
     font-weight: 600;
-    font-size: 13px;
+    font-size: 0.8125rem;
     cursor: pointer;
     transition: all .3s;
-    text-shadow: 2px 7px 5px rgba(0,0,0,0.3), 0px -4px 10px rgba(255,255,255,0.3);
+    text-shadow: 0.125rem 0.4375rem 0.3125rem rgba(0,0,0,0.3), 0rem -0.25rem 0.625rem rgba(255,255,255,0.3);
     .arrow-back {
       width: 30% !important;
     }
@@ -92,9 +92,9 @@ body {
   flex-direction: column;
   padding-block-end: 7vh ;
   padding: 2rem clamp(1rem, 5vw, 3rem) 1rem;
-  text-shadow: 2px 7px 5px rgba(0,0,0,0.3), 0px -4px 10px rgba(255,255,255,0.3);
+  text-shadow: 0.125rem 0.4375rem 0.3125rem rgba(0,0,0,0.3), 0rem -0.25rem 0.625rem rgba(255,255,255,0.3);
   font-size: clamp(.875rem, .8333975rem + .1849vw, 1rem);
-  @media (min-width:992px) {
+  @media (min-width:62rem) {
   flex-direction: row;
   justify-content: space-between;
   }
@@ -104,12 +104,12 @@ body {
   flex-basis: 45%;
   .country-flag {
    width: 100%;
-   box-shadow: 0px 15px 10px rgba(0,0,0,0.15);
+   box-shadow: 0rem 0.9375rem 0.625rem rgba(0,0,0,0.15);
   }
 }
 
 .detail__country-info {
-  @media (min-width:992px) {
+  @media (min-width:62rem) {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
@@ -117,7 +117,7 @@ body {
  
   .detail__country-info2 {
     padding-block-start: 5vh;
-    @media (min-width:992px) {
+    @media (min-width:62rem) {
     margin-inline-start: 1rem;
      }
   }
@@ -149,18 +149,18 @@ body {
   }
   .borders {
     display: flex;
-    flex-basis: calc(100% - 200px);
+    flex-basis: calc(100% - 12.5rem);
     flex-wrap: wrap;
 
     .border-country {
       all: unset;
       width: fit-content;
       padding-inline: .7rem;
-      height: 33px;
+      height: 2.0625rem;
       text-align: center;
       margin-block: 0 .8rem;
       margin-inline: 0 1rem ;
-      font-size: 13px;
+      font-size: 0.8125rem;
       transition: all .3s;
       cursor: pointer;
     }
@@ -174,8 +174,8 @@ body {
     align-items: center;
     height: 100vh;
     .spinner {
-      width: 50px;
-      height: 50px;
+      width: 3.125rem;
+      height: 3.125rem;
     }
   }
 }

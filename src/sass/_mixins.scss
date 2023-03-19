@@ -12,7 +12,7 @@
         }
         .error-icon {
           fill: #de4545;
-          width: 40px;
+          width: 2.5rem;
         }
     }
 }
@@ -20,12 +20,12 @@
 @mixin animate() {
     &:active {
       scale:.95;
-      box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.25);
+      box-shadow: 0rem 0.625rem 1.25rem 0.125rem rgba(0, 0, 0, 0.25);
     }
     @media (min-width:992px) {
       &:hover {
-        transform: translateY(-5px);
-        box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.25) !important;
+        transform: translateY(-0.3125rem);
+        box-shadow: 0rem 0.625rem 1.25rem 0.125rem rgba(0, 0, 0, 0.25) !important;
       }
     }
 }
@@ -39,11 +39,11 @@
 @mixin animateBtn() {
     &:active {
       scale:.95;
-      box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.25);
+      box-shadow: 0rem 0.625rem 1.25rem 0.125rem rgba(0, 0, 0, 0.25);
     }
     @media (min-width:992px) {
       &:hover {
-        box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.25) !important;
+        box-shadow: 0rem 0.625rem 1.25rem 0.125rem rgba(0, 0, 0, 0.25) !important;
       }
     }
 }
