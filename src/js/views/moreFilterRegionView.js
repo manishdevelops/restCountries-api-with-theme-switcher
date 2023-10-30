@@ -1,4 +1,4 @@
-import View from './views/View';
+import View from './View';
 import { PRE_PAGE_LOAD } from '/src/js/config.js';
 
 class MoreFilterRegionView extends View {

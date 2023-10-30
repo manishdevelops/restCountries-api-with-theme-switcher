@@ -5,7 +5,7 @@ import regionDropdownView from './views/regionDropdownView.js';
 import moreCountriesView from './views/moreCountriesView.js';
 import reloadView from './views/reloadView.js';
 import filterRegionView from './views/filterRegionView.js';
-import moreFilterRegionView from './moreFilterRegionView.js';
+import moreFilterRegionView from './views/moreFilterRegionView.js';
 import searchCountryView from './views/searchCountryView.js';
 import detailView from './views/detailView.js';
 import 'boxicons';
